@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="content">
 		<!-- canvas容器 -->
 		<view id="game-container"></view>
 	</view>
@@ -26,6 +26,16 @@ onUnmounted(() => {
 
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: #ffffe5;
+		
+		#game-container {
+			height: 600px;
+		}
+	}
 </style>

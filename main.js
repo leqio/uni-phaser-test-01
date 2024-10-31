@@ -1,4 +1,11 @@
+// import '@/static/libs/weapp-adapter.js'
+// import '@/static/libs/symbol'
+// import '@/static/libs/phaser.min.js'
+
+
+
 import App from './App'
+import 'normalize.css'
 
 
 // #ifndef VUE3

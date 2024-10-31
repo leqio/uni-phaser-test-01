@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "phaser": "^3.85.2"
+    "normalize.css": "^8.0.1",
+    "phaser": "^3.86.0"
   }
 }

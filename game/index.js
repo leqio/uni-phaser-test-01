@@ -1,18 +1,11 @@
 import Phaser from 'phaser';
+
 import MyScene from '@/game/scenes/myScene.js'
 
-export async function loadPhaser() {
-  if (typeof navigator === 'undefined') {
-    globalThis.navigator = { userAgent: 'UniApp' };
-  }
-
-  const Phaser = await import('@/static/libs/phaser.min.js');
-  return Phaser;
-}
 
 const config = {
-    type:Phaser.CANVAS, // 自动尝试WebGL，否则退回到Canvas
-    width:375,// 游戏界面宽
+    type:Phaser.AUTO, // 自动尝试WebGL，否则退回到Canvas
+    width:800,// 游戏界面宽
     height:600, //游戏界面高
     scene:MyScene,//游戏的具体场景
     physics:{ // 开启游戏物理引擎，不然物理环境不会生效，分别是arcade\impact\matter

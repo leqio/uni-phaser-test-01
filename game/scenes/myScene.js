@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
+
 class MyScene extends Phaser.Scene{
 
     preload(){ //预加载函数，加载各种资源
-        this.load.setBaseURL("/static/images/");
+        this.load.setBaseURL("./static/images/");
         this.load.image("sky", "sky.png");
         this.load.image("ground","platform.png");
         this.load.image("star", "star.png");
@@ -19,16 +20,16 @@ class MyScene extends Phaser.Scene{
     }
 
     create(){ // 创建场景，将资源加载进去，并处理游戏中的逻辑、屋里碰撞，事件监听都在这里
-        this.add.image(187.5, 300, "sky");// phaser3中，资源的坐标不是从左上角定位的，而是从元素中心开始定位的
+        this.add.image(400, 300, "sky");// phaser3中，资源的坐标不是从左上角定位的，而是从元素中心开始定位的
         //this.add.image(0,0,"sky").setOrigin(0,0)，这一句和上一句含义相同（改变了原点坐标）
         
         //physics属性必须在配置中添加，否则会报错
         let platforms = this.physics.add.staticGroup();//创建一个静态物理组
         //setScale 放大图像，之后必须使用refreshBody进行刷新
-        platforms.create(0, 568, "ground").setScale(2).refreshBody();
-        platforms.create(400, 400, "ground");
-        platforms.create(-80, 250, "ground");
-        platforms.create(450, 130, "ground");
+        platforms.create(400, 568, "ground").setScale(2).refreshBody();
+        platforms.create(600, 400, "ground");
+        platforms.create(50, 250, "ground");
+        platforms.create(750, 220, "ground");
 
         //将英雄添加到游戏场景中
         this.player = this.physics.add.sprite(100, 450, "dude");
@@ -58,7 +59,7 @@ class MyScene extends Phaser.Scene{
 
         let stars = this.physics.add.group({
             key: 'star',
-            repeat: 5,
+            repeat: 11,
             setXY: { 
                 x: 12, 
                 y: 0, 
@@ -113,9 +114,12 @@ class MyScene extends Phaser.Scene{
         this.physics.add.collider(this.player, bombs, hitBomb, null, this);
         function hitBomb(player, bomb){
             this.physics.pause(); //设置暂停
-            player.setTint(0xff0000); // 设置英雄哥颜色
+            
             player.anims.play('turn'); //设置英雄样式
+			player.setTint(0xff0000); // 设置英雄哥颜色,仅支持webgl
+			
             this.gameOver = true; //设置游戏结束
+			// console.log('over~',player);
         }
 
         //this.physics.add.overlap 用来创建一个碰撞覆盖对象，可以监听到两个物体是否发生了碰撞覆盖。它会返回一个 Phaser.Physics.Arcade.Collider 对象实例
